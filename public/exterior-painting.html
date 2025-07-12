@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Exterior Painting | Dependable Painting</title>
+		
+		<!-- Google Tag Manager -->
+		<script>
+			(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+				j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+				'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+			})(window,document,'script','dataLayer','GTM-M5CJ5GKB');
+		</script>
+		<!-- End Google Tag Manager -->
+		<link rel="icon" href="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/0468e61a-5565-43fa-4026-fbc5801f1100/facicon" />
+		<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+		<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js" defer crossorigin="anonymous"></script>
+		
+		<style>
+			/* 1. Base & Reset Styles */
+			*, *::before, *::after {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+			
+			html {
+				scroll-behavior: smooth;
+			}
+			
+			body {
+				font-family: Arial, sans-serif;
+				background: #000;
+				color: #fff;
+				line-height: 1.6;
+			}
+			
+			/* 2. Header & Brand */
+			header {
+				background: #0a0a0a;
+				padding: 1rem 2rem;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				position: sticky;
+				top: 0;
+				z-index: 9999;
+				box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+			}
+			
+			.brand {
+				display: flex;
+				align-items: center;
+				gap: 0.8rem;
+			}
+			
+			.brand a {
+				text-decoration: none;
+				display: flex;
+				align-items: center;
+			}
+			
+			.brand img {
+				width: 40px;
+				height: auto;
+			}
+			
+			.brand span {
+				font-weight: bold;
+				font-size: 1.4rem;
+				color: #ff3b3b;
+			}
+			
+			/* 3. Navigation Icons & Hours Popup */
+			.nav-icons {
+				display: flex;
+				align-items: center;
+				gap: 1.2rem;
+			}
+			
+			.nav-icons a {
+				color: #ff3b3b;
+				font-size: 1.5rem;
+				transition: color 0.3s ease;
+			}
+			
+			.nav-icons a:hover {
+				color: #fff;
+			}
+			
+			.hours-toggle {
+				position: relative;
+			}
+			
+			#hoursPopup {
+				display: none;
+				position: absolute;
+				top: 130%;
+				right: 0;
+				background-color: #000000;
+				color: #fff;
+				padding: 1rem;
+				border: 1px solid #333333;
+				border-radius: 6px;
+				box-shadow: 0 0 10px rgba(255, 59, 59, 0.5);
+				white-space: nowrap;
+				z-index: 10000;
+				opacity: 0;
+				transform: translateY(-10px);
+				transition: opacity 0.3s ease, transform 0.3s ease;
+			}
+			
+			#hoursPopup.visible {
+				display: block;
+				opacity: 1;
+				transform: translateY(0);
+			}
+			
+			#hoursPopup strong {
+				color: #ff3b3b;
+			}
+			
+			/* 4. Hamburger & Mobile Menu */
+			.hamburger {
+				width: 30px;
+				height: 22px;
+				cursor: pointer;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				margin-left: 1rem;
+			}
+			
+			.hamburger span {
+				height: 3px;
+				width: 100%;
+				background: #ff3b3b;
+				border-radius: 2px;
+				transition: 0.4s;
+			}
+			
+			.hamburger.active span:nth-child(1) { transform: translateY(9.5px) rotate(45deg); }
+			.hamburger.active span:nth-child(2) { opacity: 0; }
+			.hamburger.active span:nth-child(3) { transform: translateY(-9.5px) rotate(-45deg); }
+			
+			nav.menu {
+				position: fixed;
+				top: 0;
+				left: -100%;
+				width: 100%;
+				height: 100vh;
+				background: rgba(0, 0, 0, 0.95);
+				backdrop-filter: blur(4px);
+				padding: 4rem 2rem;
+				display: flex;
+				flex-direction: column;
+				gap: 1.8rem;
+				z-index: 9998;
+				overflow-y: auto;
+				transition: left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+			}
+			
+			nav.menu.open {
+				left: 0;
+				box-shadow: 5px 0 30px rgba(255, 59, 59, 0.2);
+			}
+			
+			nav.menu a {
+				color: #ff3b3b;
+				font-size: 1.5rem;
+				font-weight: bold;
+				text-decoration: none;
+				display: block;
+				padding: 0.5rem 0;
+				opacity: 0;
+				animation: menuItemFadeIn 0.5s ease forwards;
+				transition: color 0.3s ease, transform 0.3s ease;
+			}
+			
+			nav.menu a:hover {
+				color: #fff;
+				transform: translateX(5px);
+			}
+			
+			.close-btn {
+				position: absolute;
+				top: 1.5rem;
+				right: 1.5rem;
+				font-size: 2.2rem;
+				cursor: pointer;
+				color: #ff3b3b;
+				transition: color 0.3s ease, transform 0.3s ease;
+			}
+			
+			.close-btn:hover {
+				color: #ffffff;
+				transform: rotate(90deg);
+			}
+			
+			nav.menu .submenu {
+				display: none;
+				flex-direction: column;
+				margin-top: 0.5rem;
+				margin-left: 1rem;
+				gap: 0.8rem;
+			}
+			
+			nav.menu .submenu.open {
+				display: flex;
+			}
+			
+			/* 5. General Section & Typography */
+			section {
+				padding: 5rem 2rem;
+				text-align: center;
+				background: #1a1a1a;
+				color: #fff;
+			}
+			
+			h1, h2 {
+				color: white;
+			}
+			
+			h1 {
+				font-size: 2.7rem;
+				max-width: 800px;
+				margin: 0 auto 1.5rem;
+			}
+			
+			h2 {
+				font-size: 2.5rem;
+				margin-bottom: 3rem;
+			}
+			
+			p {
+				color: #ccc;
+				font-size: 1.2rem;
+				max-width: 700px;
+				margin: 0 auto 2rem;
+			}
+			
+			/* 6. Page-Specific Sections */
+			
+			/* Hero Section */
+			.exterior-hero {
+				padding: 5rem 2rem;
+				text-align: center;
+				background: #000000 !important;
+				position: relative;
+				overflow: hidden;
+			}
+			
+			.exterior-hero h1 {
+				color: #ff3b3b !important;
+				font-size: 2.8rem;
+				animation: fadeInDown 1s ease-out;
+			}
+			
+			.exterior-hero p {
+				color: #ffffff !important;
+				animation: fadeIn 1.5s ease-out;
+			}
+			
+			.exterior-hero p:last-of-type {
+				color: #cccccc !important;
+				font-size: 1rem;
+				animation: fadeIn 2s ease-out;
+			}
+			
+			.exterior-hero a {
+				background: #ff3b3b !important;
+				color: white;
+				padding: 1rem 2rem;
+				font-weight: bold;
+				border-radius: 6px;
+				text-decoration: none;
+				font-size: 1.1rem;
+				transition: all 0.3s ease;
+			}
+			
+			.exterior-hero a:hover {
+				background: #e00000 !important;
+				transform: translateY(-2px);
+				box-shadow: 0 5px 15px rgba(255, 59, 59, 0.5);
+			}
+			
+			/* Services Section */
+			#services {
+				background: #0a0a0a;
+			}
+			
+			#services h2 {
+				color: #fff;
+			}
+			
+			#services > div {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+				gap: 2rem;
+				max-width: 1000px;
+				margin: 0 auto;
+			}
+			
+			.service-card {
+				background: linear-gradient(145deg, #111 0%, #1f1f1f 100%);
+				padding: 2rem;
+				border-radius: 20px;
+				box-shadow: 0 12px 25px rgba(255, 59, 59, 0.3);
+				transition: transform 0.4s, box-shadow 0.4s;
+			}
+			
+			.service-card:hover {
+				transform: translateY(-8px);
+				box-shadow: 0 8px 20px rgba(255, 59, 59, 0.4);
+			}
+			
+			.service-card h3 {
+				color: #ff3b3b;
+				font-size: 1.4rem;
+				margin-bottom: 1rem;
+			}
+			
+			/* Gallery Section */
+			#gallery {
+				padding: 3rem 1rem;
+				background: #1a1a1a;
+			}
+			
+			#gallery h2 {
+				font-size: 2.5rem;
+				margin-bottom: 2rem;
+				color: #ff3b3b;
+				font-weight: 700;
+			}
+			
+			#gallery p {
+				max-width: 700px;
+				margin: 0 auto 2.5rem;
+				color: #ccc;
+				font-size: 1.1rem;
+				line-height: 1.6;
+			}
+			
+			.swiper-container {
+				width: 100%;
+				max-width: 1200px;
+				margin: auto;
+				position: relative;
+				overflow: hidden;
+				border-radius: 12px;
+				box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+				aspect-ratio: 16 / 9;
+			}
+			
+			.swiper-slide {
+				background: #000;
+			}
+			
+			.swiper-slide img {
+				display: block;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				border-radius: 12px;
+			}
+			
+			.swiper-button-next,
+			.swiper-button-prev {
+				color: #ff3b3b !important;
+				background-color: rgba(0, 0, 0, 0.3);
+				border-radius: 50%;
+				width: 44px;
+				height: 44px;
+				transition: background-color 0.3s ease;
+			}
+			
+			.swiper-button-next:hover,
+			.swiper-button-prev:hover {
+				background-color: rgba(255, 59, 59, 0.8);
+				color: #fff !important;
+			}
+			
+			.swiper-button-next::after,
+			.swiper-button-prev::after {
+				font-size: 1.5rem !important;
+				font-weight: bold;
+			}
+			
+			.swiper-pagination-bullet-active {
+				background-color: #ff3b3b !important;
+			}
+			
+			/* Why Prep Matters Section */
+			#why-prep-matters {
+				padding: 5rem 2rem;
+				background: #0a0a0a;
+			}
+			
+			#why-prep-matters h2 {
+				color: #ff3b3b;
+				font-size: 2.7rem;
+			}
+			
+			#why-prep-matters p:last-of-type {
+				color: #cccccc;
+				font-size: 1rem;
+				max-width: 700px;
+				margin: 0 auto 3rem;
+			}
+			
+			#why-prep-matters a {
+				background: #ff3b3b;
+				color: white;
+				padding: 1rem 2rem;
+				border-radius: 8px;
+				text-decoration: none;
+				font-weight: bold;
+				font-size: 1.1rem;
+				box-shadow: 0 4px 12px rgba(255, 59, 59, 0.25);
+				transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+			}
+			
+			#why-prep-matters a:hover {
+				background: #e00000;
+				transform: translateY(-2px);
+				box-shadow: 0 6px 18px rgba(255, 59, 59, 0.45);
+			}
+			
+			/* FAQ Section */
+			#exterior-faq {
+				padding: 4rem 2rem;
+				background: #0a0a0a;
+			}
+			
+			#exterior-faq h2 {
+				font-size: 2.2rem;
+				color: #ff3b3b;
+			}
+			
+			#exterior-faq > div {
+				max-width: 800px;
+				margin: 0 auto;
+				text-align: left;
+			}
+			
+			#exterior-faq h3 {
+				color: #ff3b3b;
+				font-size: 1.4rem;
+				margin-bottom: 0.5rem;
+			}
+			
+			#exterior-faq p {
+				font-size: 1.1rem;
+				margin-bottom: 1.5rem;
+			}
+			
+			/* Map Section */
+			#map {
+				padding: 4rem 2rem;
+				background: #1a1a1a;
+			}
+			
+			#map h2 {
+				color: #ff3b3b;
+				font-size: 2.4rem;
+			}
+			
+			#map p:last-of-type {
+				color: #cccccc;
+				font-size: 0.95rem;
+			}
+			
+			#map a {
+				color: #ff3b3b;
+				font-weight: bold;
+				text-decoration: none;
+			}
+			
+			#map a:hover {
+				text-decoration: underline;
+			}
+			
+			#map > div {
+				max-width: 1000px;
+				margin: 0 auto;
+				overflow: hidden;
+				border-radius: 12px;
+				border: 1px solid #222222;
+				box-shadow: 0 8px 25px rgba(255, 59, 59, 0.2);
+			}
+			
+			#map iframe {
+				display: block;
+				width: 100%;
+				height: 450px;
+				border: 0;
+			}
+			
+			/* 7. Footer */
+			footer {
+				background: #0a0a0a;
+				color: #ccc;
+				padding: 1rem 2rem;
+				text-align: center;
+				font-size: 0.9rem;
+			}
+			
+			footer a {
+				color: #ff3b3b;
+				text-decoration: none;
+			}
+			
+			/* 8. Media Queries & Animations */
+			@media (max-width: 768px) {
+				header { padding: 1rem; }
+				.brand span { font-size: 1.2rem; }
+				.brand img { width: 35px; }
+				.nav-icons { gap: 0.8rem; }
+				.nav-icons a { font-size: 1.3rem; }
+				.hamburger { width: 25px; height: 18px; }
+				
+				nav.menu { padding: 3.5rem 1.5rem; gap: 1.5rem; }
+				nav.menu a { font-size: 1.3rem; }
+				.close-btn { font-size: 2rem; top: 1rem; right: 1rem; }
+				
+				#hoursPopup { font-size: 0.8rem; padding: 0.8rem; right: 5px; top: 120%; }
+				
+				section { padding: 3rem 1rem; }
+				h1, .exterior-hero h1 { font-size: 2.2rem; }
+				p, .exterior-hero p { font-size: 1rem; }
+				h2, #services h2, #gallery h2, #why-prep-matters h2, #exterior-faq h2, #map h2 { font-size: 2rem; }
+				
+				.service-card h3 { font-size: 1.2rem; }
+				.service-card p { font-size: 0.95rem; }
+				
+				.swiper-button-next, .swiper-button-prev { display: none; }
+			}
+			
+			@keyframes fadeInDown {
+				from { opacity: 0; transform: translateY(-20px); }
+				to { opacity: 1; transform: translateY(0); }
+			}
+			
+			@keyframes fadeIn {
+				from { opacity: 0; }
+				to { opacity: 1; }
+			}
+			
+			@keyframes menuItemFadeIn {
+				from { opacity: 0; transform: translateY(10px); }
+				to { opacity: 1; transform: translateY(0); }
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Google Tag Manager (noscript) -->
+		<noscript>
+			<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5CJ5GKB"
+				height="0" width="0" style="display:none;visibility:hidden"></iframe>
+		</noscript>
+		<!-- End Google Tag Manager (noscript) -->
+		<header>
+			<div class="brand">
+				<a href="/">
+					<img src="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/0468e61a-5565-43fa-4026-fbc5801f1100/Logos" alt="Dependable Painting Logo">
+				</a>
+				<span>Dependable Painting</span>
+			</div>
+			<div class="nav-icons">
+				<div class="hours-toggle">
+					<a href="#" title="Business Hours" aria-label="Business Hours" onclick="toggleHoursPopup(event)">
+						<i class="fas fa-clock"></i>
+					</a>
+					<div id="hoursPopup" role="tooltip">
+						<strong>Hours:</strong><br>
+						Mon–Fri: 8:00am – 5:30pm<br>
+						Saturday: By Appointment<br>
+						Sunday: Closed
+					</div>
+				</div>
+				<a href="tel:2515254405" title="Call Us" aria-label="Call Us"><i class="fas fa-phone"></i></a>
+				<a href="https://g.page/r/CQjqan_iFBshEAE" target="_blank" rel="noopener noreferrer" title="Find us on Google" aria-label="Find us on Google"><i class="fab fa-google"></i></a>
+				<div class="hamburger" onclick="toggleMenu()" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+		</header>
+		
+		<nav class="menu" id="mobileMenu" aria-hidden="true">
+			<div class="close-btn" onclick="toggleMenu()" aria-label="Close menu">&times;</div>
+			<a href="/">Home</a>
+			<a href="about.html">About Us</a>
+			<a href="#" onclick="toggleSubMenu(event)">Services &blacktriangledown;</a>
+			<div class="submenu" id="submenu">
+				<a href="services.html">Services Overview</a>
+				<a href="interior-painting.html">Interior Painting</a>
+				<a href="exterior-painting.html">Exterior Painting</a>
+				<a href="cabinet-painting.html">Cabinet Painting</a>
+				<a href="commercial-painting.html">Commercial Painting</a>
+			</div>
+			<a href="index.html#contact">Contact</a>
+			<a href="index.html#gallery">Gallery</a>
+			<a href="privacy.html">Privacy Policy</a>
+		</nav>
+		
+		<main>
+			<section class="exterior-hero">
+				<h1>Exterior Painting That Lasts and Looks Amazing</h1>
+				<p>From siding and shutters to brick and trim, we prep, prime, and paint for maximum durability and lasting curb appeal.</p>
+				<p>Our exterior crews are clean, careful, and committed to getting your home looking its best — and keeping it protected for years.</p>
+				<a href="index.html#contact">Get Your Free Quote</a>
+			</section>
+			
+			<section id="services">
+				<h2>What We Paint</h2>
+				<div>
+					<div class="service-card">
+						<h3>Masonry Surfaces | Brick & Stucco</h3>
+						<p>Breathe new life into old brick and stucco. We restore, seal, and protect masonry with premium coatings designed to thrive in Alabama’s toughest conditions.</p>
+					</div>
+					<div class="service-card">
+						<h3>Board and Batten</h3>
+						<p>Crisp lines, bold colors, lasting protection. We prime and paint board and batten siding to give your home that sharp, high-end finish that stands out.</p>
+					</div>
+					<div class="service-card">
+						<h3>Floors & Decks</h3>
+						<p>From porches to patios, we stain, seal, and protect wood and concrete — creating outdoor spaces that look better, last longer, and stand stronger.</p>
+					</div>
+					<div class="service-card">
+						<h3>Metal Surfaces</h3>
+						<p>Rust? Not on our watch. We prep and coat metal roofs, doors, and rails with specialty finishes that defend against weather and time.</p>
+					</div>
+					<div class="service-card">
+						<h3>Wood Siding</h3>
+						<p>We sand, prime, and precision-paint wood siding to bring out rich color and deep protection — keeping your home beautiful for years to come.</p>
+					</div>
+					<div class="service-card">
+						<h3>Trim, Doors & Details</h3>
+						<p>It's the little things that make a big impact. We paint doors, shutters, columns, and trim with sharp, clean lines and a finish built to impress.</p>
+					</div>
+				</div>
+			</section>
+			
+			<section id="gallery">
+				<h2>Exterior Project Gallery</h2>
+				<p>Clean prep. Professional finishes. Lasting curb appeal. Here's a look at just a few of our exterior projects across Baldwin and Mobile Counties.</p>
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide"><img src="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/1d414727-2c8d-40db-0e59-33a264582e00/1200x675" alt="Modern Board and Batten Exterior Painting" loading="lazy" /></div>
+						<div class="swiper-slide"><img src="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/a551556f-9978-4b61-7d44-64b02aa42e00/1200x675" alt="Classic Wood Siding Exterior Repaint" loading="lazy" /></div>
+						<div class="swiper-slide"><img src="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/ea2b8a96-4cd9-42b6-b55e-1a528efedd00/1200x675" alt="Dark Themed Board and Batten Home Exterior" loading="lazy" /></div>
+						<div class="swiper-slide"><img src="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/e2bdc434-72dc-4da0-5e90-49404c370200/1200x675" alt="Inviting Front Porch Painting" loading="lazy" /></div>
+						<div class="swiper-slide"><img src="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/87dc41e4-6dd5-403b-01d5-328666618700/1200x675" alt="Crisp White Brick Exterior Transformation" loading="lazy" /></div>
+						<div class="swiper-slide"><img src="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/03a8b4cb-e1e5-41fb-0408-c4c096ed0800/1200x675" alt="Church Exterior Ceiling Repaint Project" loading="lazy" /></div>
+					</div>
+					<div class="swiper-pagination"></div>
+					<div class="swiper-button-next"></div>
+					<div class="swiper-button-prev"></div>
+				</div>
+			</section>
+			
+			<section id="why-prep-matters">
+				<h2>Why Prep Matters More Than Paint</h2>
+				<p>You can buy the best paint in the world — but without the right prep, it won't last. At Dependable Painting, every project starts with cleaning, patching, sanding, and priming the right way — no shortcuts.</p>
+				<p>Pressure washing isn’t optional. Surface repairs aren’t optional. We treat your home or business like it’s our own — ensuring the finish coat bonds properly and stays beautiful for years.</p>
+				<a href="index.html#contact">See How We Prep</a>
+			</section>
+			
+			<section id="exterior-faq">
+				<h2>Exterior Painting FAQs</h2>
+				<div>
+					<h3>How long does exterior painting usually take?</h3>
+					<p>Most residential repaints take 3–5 days depending on size, prep needs, and weather. We give clear timelines upfront and stay on schedule.</p>
+					<h3>Do you pressure wash every exterior before painting?</h3>
+					<p>Absolutely. Every project starts with a full pressure wash to remove dirt, mildew, and loose paint — essential for proper adhesion and lasting results.</p>
+					<h3>What kind of paint do you use?</h3>
+					<p>We primarily use Sherwin-Williams exterior coatings, designed for maximum durability against Alabama’s sun, humidity, and storms.</p>
+					<h3>Do you handle surface repairs before painting?</h3>
+					<p>Yes. We repair damaged trim, siding, fascia, and wood rot before any primer or paint is applied. Prep is everything.</p>
+					<h3>Is your work guaranteed?</h3>
+					<p>100%. Every exterior project is backed by a workmanship guarantee. We don’t leave until you’re fully satisfied.</p>
+				</div>
+			</section>
+			
+			<section id="map">
+				<h2>Where We Work</h2>
+				<p>Dependable Painting proudly serves homeowners and businesses throughout <strong>Baldwin County</strong> and <strong>Mobile County</strong> — including Fairhope, Daphne, Foley, Gulf Shores, Spanish Fort, Robertsdale, Bay Minette, and surrounding areas.</p>
+				<p>Not sure if we come to your neighborhood? Call us at <a href="tel:2515254405">(251) 525-4405</a> and we’ll let you know.</p>
+				<div>
+					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d219730.7644832598!2d-88.02498144999999!3d30.55962875!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x889a45e1a3b8e7ab%3A0x6c6e74483a3c6139!2sDependable%20Painting!5e0!3m2!1sen!2sus!4v1676495390885!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+				</div>
+			</section>
+		</main>
+		
+		<footer>
+			<p>&copy; <span id="current-year"></span> Dependable Painting LLC &bull; <a href="tel:2515254405">(251) 525-4405</a> &bull; Bay Minette, AL</p>
+		</footer>
+		
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				
+				// Initialize Swiper for the gallery
+				new Swiper('.swiper-container', {
+					loop: true,
+					spaceBetween: 20,
+					autoplay: {
+						delay: 4000,
+						disableOnInteraction: false,
+					},
+					pagination: {
+						el: '.swiper-pagination',
+						clickable: true,
+					},
+					navigation: {
+						nextEl: '.swiper-button-next',
+						prevEl: '.swiper-button-prev',
+					},
+				});
+				
+				// Cache DOM elements
+				const mobileMenu = document.getElementById('mobileMenu');
+				const hamburger = document.querySelector('.hamburger');
+				const hoursPopup = document.getElementById('hoursPopup');
+				const hoursToggleLink = document.querySelector('.hours-toggle a');
+				const body = document.body;
+				const submenu = document.getElementById('submenu');
+				
+				// Toggle mobile menu
+				window.toggleMenu = () => {
+					if (!mobileMenu || !hamburger) return;
+					
+					const isOpen = mobileMenu.classList.toggle('open');
+					hamburger.classList.toggle('active', isOpen);
+					hamburger.setAttribute('aria-expanded', String(isOpen));
+					mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+					body.style.overflow = isOpen ? 'hidden' : '';
+					
+					// Re-trigger animation for menu items
+					if (isOpen) {
+						const links = mobileMenu.querySelectorAll('a');
+						links.forEach((link, i) => {
+							link.style.animation = 'none';
+							void link.offsetWidth; // Trigger reflow
+							link.style.animation = `menuItemFadeIn 0.5s ease forwards ${i * 0.07 + 0.1}s`;
+						});
+					}
+				};
+				
+				// Toggle services submenu
+				window.toggleSubMenu = (e) => {
+					e.preventDefault();
+					submenu?.classList.toggle('open');
+				};
+				
+				// Toggle business hours popup
+				window.toggleHoursPopup = (e) => {
+					e.preventDefault();
+					e.stopPropagation();
+					if (!hoursPopup || !hoursToggleLink) return;
+					
+					const isVisible = hoursPopup.classList.toggle('visible');
+					hoursToggleLink.setAttribute('aria-expanded', String(isVisible));
+				};
+				
+				// Close hours popup when clicking outside
+				document.addEventListener('click', (e) => {
+					if (hoursPopup?.classList.contains('visible')) {
+						if (!hoursPopup.contains(e.target) && !e.target.closest('.hours-toggle')) {
+							hoursPopup.classList.remove('visible');
+							hoursToggleLink?.setAttribute('aria-expanded', 'false');
+						}
+					}
+				});
+				
+				// Set current year in the footer
+				const yearSpan = document.getElementById('current-year');
+				if (yearSpan) {
+					yearSpan.textContent = new Date().getFullYear();
+				}
+			});
+		</script>
+	</body>
+</html>

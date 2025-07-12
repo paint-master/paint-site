@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Commercial Painting | Dependable Painting</title>
+		<meta name="description" content="Reliable commercial painting services for businesses across Baldwin and Mobile counties. Schedule a free walkthrough today." />
+		<meta name="keywords" content="Commercial Painting Baldwin County, Commercial Painters Mobile AL, Office Painting, Retail Painting, Epoxy Floors, Dependable Painting Company">
+			
+			<link rel="icon" href="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/0468e61a-5565-43fa-4026-fbc5801f1100/facicon" />
+			<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+			<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js" defer crossorigin="anonymous"></script>
+			
+			<!-- Google Tag Manager -->
+			<script>
+				(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+					new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+					j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+					'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+				})(window,document,'script','dataLayer','GTM-M5CJ5GKB');
+			</script>
+			<!-- End Google Tag Manager -->
+			<script defer src="https://analytics.cloudflare.com/apps/painter/painter-tag.js"></script>
+			
+			<style>
+				/* 1. Base & Reset Styles */
+				*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+				html { scroll-behavior: smooth; }
+				body {
+					font-family: Arial, sans-serif;
+					background: #000;
+					color: #fff;
+					line-height: 1.6;
+				}
+				
+				/* 2. Header & Brand */
+				header {
+					background: #0a0a0a;
+					padding: 1rem 2rem;
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+					position: sticky;
+					top: 0;
+					z-index: 9999;
+					box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+				}
+				.brand { display: flex; align-items: center; gap: 0.8rem; }
+				.brand a { text-decoration: none; display: flex; align-items: center; }
+				.brand img { width: 40px; height: auto; }
+				.brand span { font-weight: bold; font-size: 1.4rem; color: #ff3b3b; }
+				
+				/* 3. Navigation & Hours Popup */
+				.nav-icons { display: flex; align-items: center; gap: 1.2rem; }
+				.nav-icons a { color: #ff3b3b; font-size: 1.5rem; transition: color 0.3s ease; }
+				.nav-icons a:hover { color: #fff; }
+				.hours-toggle { position: relative; }
+				#hoursPopup {
+					display: none;
+					position: absolute;
+					background-color: #000;
+					color: #fff;
+					padding: 1rem;
+					border-radius: 6px;
+					box-shadow: 0 0 10px rgba(255, 59, 59, 0.5);
+					top: 130%;
+					right: 0;
+					white-space: nowrap;
+					z-index: 10000;
+					opacity: 0;
+					transform: translateY(-10px);
+					border: 1px solid #333333;
+					transition: opacity 0.3s ease, transform 0.3s ease;
+				}
+				#hoursPopup.visible { display: block; opacity: 1; transform: translateY(0); }
+				#hoursPopup strong { color: #ff3b3b; }
+				
+				/* 4. Hamburger & Mobile Menu */
+				.hamburger {
+					width: 30px;
+					height: 22px;
+					cursor: pointer;
+					display: flex;
+					flex-direction: column;
+					justify-content: space-between;
+					margin-left: 1rem;
+				}
+				.hamburger span { height: 3px; width: 100%; background: #ff3b3b; border-radius: 2px; transition: 0.4s; }
+				.hamburger.active span:nth-child(1) { transform: translateY(9.5px) rotate(45deg); }
+				.hamburger.active span:nth-child(2) { opacity: 0; }
+				.hamburger.active span:nth-child(3) { transform: translateY(-9.5px) rotate(-45deg); }
+				nav.menu {
+					position: fixed;
+					top: 0;
+					left: -100%;
+					width: 100%;
+					height: 100vh;
+					background: rgba(0, 0, 0, 0.95);
+					backdrop-filter: blur(4px);
+					padding: 4rem 2rem;
+					display: flex;
+					flex-direction: column;
+					gap: 1.8rem;
+					z-index: 9998;
+					overflow-y: auto;
+					transition: left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+				}
+				nav.menu.open { left: 0; box-shadow: 5px 0 30px rgba(255, 59, 59, 0.2); }
+				nav.menu a {
+					color: #ff3b3b;
+					font-size: 1.5rem;
+					font-weight: bold;
+					text-decoration: none;
+					display: block;
+					padding: 0.5rem 0;
+					opacity: 0;
+					animation: menuItemFadeIn 0.5s ease forwards;
+					transition: color 0.3s ease, transform 0.3s ease;
+				}
+				nav.menu a:hover { color: #fff; transform: translateX(5px); }
+				.close-btn {
+					position: absolute;
+					top: 1.5rem;
+					right: 1.5rem;
+					font-size: 2.2rem;
+					cursor: pointer;
+					color: #ff3b3b;
+					transition: color 0.3s ease, transform 0.3s ease;
+				}
+				.close-btn:hover { color: #ffffff; transform: rotate(90deg); }
+				nav.menu .submenu { display: none; flex-direction: column; margin-top: 0.5rem; margin-left: 1rem; gap: 0.8rem; }
+				nav.menu .submenu.open { display: flex; }
+				
+				/* 5. General Section & Typography */
+				section { padding: 5rem 2rem; text-align: center; background: #1a1a1a; }
+				h1, h2 { color: white; }
+				h1 { font-size: 2.7rem; max-width: 800px; margin: 0 auto 1.5rem; }
+				h2 { font-size: 2.5rem; margin-bottom: 3rem; }
+				p { color: #ccc; font-size: 1.2rem; max-width: 700px; margin: 0 auto 2rem; }
+				
+				/* 6. Page-Specific Sections */
+				
+				/* Hero Section */
+				.commercial-hero { padding: 5rem 2rem; background: #000 !important; position: relative; overflow: hidden; }
+				.commercial-hero h1 { color: #ff3b3b !important; font-size: 2.8rem; animation: fadeInDown 1s ease-out; }
+				.commercial-hero p { color: #fff !important; animation: fadeIn 1.5s ease-out; }
+				.commercial-hero .subtitle { color: #ccc !important; font-size: 1rem; animation: fadeIn 2s ease-out; }
+				.commercial-hero a {
+					background: #ff3b3b !important;
+					color: white;
+					padding: 1rem 2rem;
+					font-weight: bold;
+					border-radius: 6px;
+					text-decoration: none;
+					font-size: 1.1rem;
+					transition: all 0.3s ease;
+				}
+				.commercial-hero a:hover { background: #e00000 !important; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255, 59, 59, 0.5); }
+				
+				/* Services Section */
+				#commercial-services { background: #0a0a0a; }
+				#commercial-services h2 { color: #fff; }
+				#commercial-services > div { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; max-width: 1000px; margin: 0 auto; }
+				.service-card {
+					background: linear-gradient(145deg, #111 0%, #1f1f1f 100%);
+					padding: 2rem;
+					border-radius: 20px;
+					box-shadow: 0 12px 25px rgba(255, 59, 59, 0.3);
+					transition: transform 0.4s, box-shadow 0.4s;
+				}
+				.service-card:hover { transform: translateY(-8px); box-shadow: 0 8px 20px rgba(255, 59, 59, 0.4); }
+				.service-card h3 { color: #ff3b3b; font-size: 1.4rem; margin-bottom: 1rem; }
+				
+				/* Gallery Section */
+				#gallery { padding: 3rem 1rem; background: #1a1a1a; }
+				#gallery h2 { font-size: 2.5rem; margin-bottom: 2rem; color: #ff3b3b; font-weight: 700; }
+				#gallery p { max-width: 700px; margin: 0 auto 2.5rem; color: #ccc; font-size: 1.1rem; }
+				.swiper-container { width: 100%; max-width: 1200px; margin: auto; position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); aspect-ratio: 16 / 9; }
+				.swiper-slide { background: #000; }
+				.swiper-slide img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
+				.swiper-button-next, .swiper-button-prev {
+					color: #ff3b3b !important;
+					background-color: rgba(0, 0, 0, 0.3);
+					border-radius: 50%;
+					width: 44px;
+					height: 44px;
+					transition: background-color 0.3s ease;
+				}
+				.swiper-button-next:hover, .swiper-button-prev:hover { background-color: rgba(255, 59, 59, 0.8); color: #fff !important; }
+				.swiper-button-next::after, .swiper-button-prev::after { font-size: 1.5rem !important; font-weight: bold; }
+				.swiper-pagination-bullet-active { background-color: #ff3b3b !important; }
+				
+				/* CTA Section */
+				#cta-section { padding: 5rem 2rem; background: #0a0a0a; }
+				#cta-section h2 { color: #ff3b3b; font-size: 2.7rem; }
+				#cta-section p { max-width: 700px; margin: 0 auto 3rem; color: #ccc; font-size: 1.1rem; }
+				#cta-section a {
+					background: #ff3b3b;
+					color: white;
+					padding: 1rem 2rem;
+					border-radius: 8px;
+					text-decoration: none;
+					font-weight: bold;
+					font-size: 1.1rem;
+					box-shadow: 0 4px 12px rgba(255, 59, 59, 0.25);
+					transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+				}
+				#cta-section a:hover { background: #e00000; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(255, 59, 59, 0.45); }
+				
+				/* FAQ Section */
+				#commercial-faq { padding: 4rem 2rem; background: #1a1a1a; }
+				#commercial-faq h2 { font-size: 2.2rem; color: #ff3b3b; }
+				#commercial-faq > div { max-width: 800px; margin: 0 auto; text-align: left; }
+				#commercial-faq h3 { color: #ff3b3b; font-size: 1.4rem; margin-bottom: 0.5rem; }
+				#commercial-faq p { font-size: 1.1rem; margin-bottom: 1.5rem; }
+				
+				/* Map Section */
+				#map { padding: 4rem 2rem; background: #0a0a0a; }
+				#map h2 { color: #ff3b3b; font-size: 2.4rem; }
+				#map p:last-of-type { color: #ccc; font-size: 0.95rem; }
+				#map a { color: #ff3b3b; font-weight: bold; text-decoration: none; }
+				#map a:hover { text-decoration: underline; }
+				#map > div { max-width: 1000px; margin: 0 auto; overflow: hidden; border-radius: 12px; border: 1px solid #222; box-shadow: 0 8px 25px rgba(255, 59, 59, 0.2); }
+				#map iframe { display: block; width: 100%; height: 450px; border: 0; }
+				
+				/* 7. Footer */
+				footer { background: #000; color: #ccc; padding: 1rem 2rem; text-align: center; font-size: 0.9rem; }
+				footer a { color: #ff3b3b; text-decoration: none; }
+				footer a:hover { text-decoration: underline; }
+				
+				/* 8. Media Queries & Animations */
+				@media (max-width: 768px) {
+					header { padding: 1rem; }
+					.brand span { font-size: 1.2rem; }
+					.brand img { width: 35px; }
+					nav.menu { padding: 3.5rem 1.5rem; gap: 1.5rem; }
+					nav.menu a { font-size: 1.3rem; }
+					.close-btn { font-size: 2rem; top: 1rem; right: 1rem; }
+					#hoursPopup { font-size: 0.8rem; padding: 0.8rem; right: 5px; top: 120%; }
+					section { padding: 3rem 1rem; }
+					h1, .commercial-hero h1 { font-size: 2.2rem; }
+					p, .commercial-hero p { font-size: 1rem; }
+					h2, #commercial-services h2, #gallery h2, #cta-section h2, #commercial-faq h2, #map h2 { font-size: 2rem; }
+					.service-card h3 { font-size: 1.2rem; }
+					.service-card p { font-size: 0.95rem; }
+					.swiper-button-next, .swiper-button-prev { display: none; }
+				}
+				@keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+				@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+				@keyframes menuItemFadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+			</style>
+	</head>
+	<body>
+		<!-- Google Tag Manager (noscript) -->
+		<noscript>
+			<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5CJ5GKB"
+				height="0" width="0" style="display:none;visibility:hidden"></iframe>
+		</noscript>
+		<!-- End Google Tag Manager (noscript) -->
+		<header>
+			<div class="brand">
+				<a href="/">
+					<img src="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/0468e61a-5565-43fa-4026-fbc5801f1100/Logos" alt="Dependable Painting Logo" />
+				</a>
+				<span>Dependable Painting</span>
+			</div>
+			<div class="nav-icons">
+				<div class="hours-toggle">
+					<a href="#" title="Business Hours" aria-label="Business Hours" onclick="toggleHoursPopup(event)">
+						<i class="fas fa-clock"></i>
+					</a>
+					<div id="hoursPopup" role="tooltip">
+						<strong>Hours:</strong><br>
+						Mon–Fri: 8:00am – 5:30pm<br>
+						Saturday: By Appointment<br>
+						Sunday: Closed
+					</div>
+				</div>
+				<a href="tel:2515254405" title="Call Us" aria-label="Call Us"><i class="fas fa-phone"></i></a>
+				<a href="https://g.page/r/CQjqan_iFBshEAE" target="_blank" rel="noopener noreferrer" title="Find us on Google" aria-label="Find us on Google"><i class="fab fa-google"></i></a>
+				<div class="hamburger" onclick="toggleMenu()" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+		</header>
+		
+		<nav class="menu" id="mobileMenu" aria-hidden="true">
+			<div class="close-btn" onclick="toggleMenu()" aria-label="Close menu">×</div>
+			<a href="/">Home</a>
+			<a href="about.html">About Us</a>
+			<a href="#" onclick="toggleSubMenu(event)">Services &blacktriangledown;</a>
+			<div class="submenu" id="submenu">
+				<a href="services.html">Services Overview</a>
+				<a href="interior-painting.html">Interior Painting</a>
+				<a href="exterior-painting.html">Exterior Painting</a>
+				<a href="cabinet-painting.html">Cabinet Painting</a>
+				<a href="commercial-painting.html">Commercial Painting</a>
+			</div>
+			<a href="index.html#contact">Contact</a>
+			<a href="index.html#gallery">Gallery</a>
+			<a href="privacy.html">Privacy Policy</a>
+		</nav>
+		
+		<main>
+			<section class="commercial-hero">
+				<h1>High-Impact Commercial Painting That Gets You Noticed</h1>
+				<p>From office suites to massive warehouses, we deliver sharp, lasting finishes with speed, precision, and zero excuses.</p>
+				<p class="subtitle">Trusted by businesses across Baldwin and Mobile County for clean, high-performance results that last.</p>
+				<a href="index.html#contact">Schedule a Free Walkthrough</a>
+			</section>
+			
+			<section id="commercial-services">
+				<h2>Our Commercial Capabilities</h2>
+				<div>
+					<div class="service-card"><h3>Interior Commercial Painting</h3><p>From office refreshes to complete tenant build-outs, we deliver clean lines and durable finishes with minimal disruption.</p></div>
+					<div class="service-card"><h3>Exterior Commercial Painting</h3><p>Boost your curb appeal and protect your investment. We paint storefronts, metal awnings, and large-scale brick and concrete buildings.</p></div>
+					<div class="service-card"><h3>Specialty Coatings</h3><p>We apply high-performance coatings, including epoxy floor systems, concrete stains, and elastomeric paints for enhanced durability.</p></div>
+					<div class="service-card"><h3>Flexible Scheduling</h3><p>We work when you can't. Our crews are available for night and weekend scheduling to ensure your business keeps running smoothly.</p></div>
+					<div class="service-card"><h3>Drywall & Surface Repair</h3><p>Our service includes comprehensive prep, including professional drywall patching and surface repairs for a flawless final coat.</p></div>
+					<div class="service-card"><h3>Licensed & Insured</h3><p>Dependable Painting is fully licensed and insured for all commercial work, giving you peace of mind from start to finish.</p></div>
+				</div>
+			</section>
+			
+			<section id="gallery">
+				<h2>Commercial Project Gallery</h2>
+				<p>Image matters in business — and our commercial painting services make sure yours says “professional” from first glance to final walk-through.</p>
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide"><img src="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/PLACEHOLDER-1/1200x675" alt="Interior Office Painting in Fairhope AL" loading="lazy" /></div>
+						<div class="swiper-slide"><img src="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/PLACEHOLDER-2/1200x675" alt="Retail Storefront Exterior Repaint in Mobile County" loading="lazy" /></div>
+						<div class="swiper-slide"><img src="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/PLACEHOLDER-3/1200x675" alt="Warehouse Epoxy Floor Coating Baldwin County" loading="lazy" /></div>
+						<div class="swiper-slide"><img src="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/PLACEHOLDER-4/1200x675" alt="Restaurant Interior Painting in Daphne AL" loading="lazy" /></div>
+					</div>
+					<div class="swiper-pagination"></div>
+					<div class="swiper-button-next"></div>
+					<div class="swiper-button-prev"></div>
+				</div>
+			</section>
+			
+			<section id="cta-section">
+				<h2>Ready to Upgrade Your Business?</h2>
+				<p>A fresh coat of paint is one of the fastest ways to improve your commercial property's value and appeal. We're here to make it happen seamlessly.</p>
+				<a href="index.html#contact">Get Your Free Commercial Estimate</a>
+			</section>
+			
+			<section id="commercial-faq">
+				<h2>Commercial Painting FAQs</h2>
+				<div>
+					<h3>How do you work around business hours?</h3>
+					<p>We prioritize your business continuity. We offer flexible scheduling, including nights, weekends, and holiday periods, to minimize any disruption to your customers and staff.</p>
+					<h3>Are you licensed and insured for commercial jobs?</h3>
+					<p>Yes, absolutely. Dependable Painting is fully licensed and carries comprehensive general liability and workers' compensation insurance for all commercial projects.</p>
+					<h3>What types of commercial properties do you service?</h3>
+					<p>We service a wide range of properties, including retail stores, offices, medical facilities, restaurants, warehouses, and new construction projects.</p>
+					<h3>What kind of paint do you use for commercial projects?</h3>
+					<p>We use premium, low-VOC and zero-VOC commercial-grade paints from Sherwin-Williams and other top brands, selected for their durability, scuff-resistance, and professional finish.</p>
+				</div>
+			</section>
+			
+			<section id="map">
+				<h2>Serving Businesses Across Two Counties</h2>
+				<p>Dependable Painting proudly serves businesses throughout <strong>Baldwin County</strong> and <strong>Mobile County</strong> — including Fairhope, Daphne, Foley, Gulf Shores, Spanish Fort, and all surrounding areas.</p>
+				<p>Call us at <a href="tel:2515254405">(251) 525-4405</a> to schedule a free, on-site walkthrough and estimate.</p>
+				<div>
+					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d878474.4639526487!2d-88.50364527369405!3d30.675054662867886!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x889a5d78a87e436f%3A0x211b14e27f6aea08!2sDependable%20Painting%20LLC!5e0!3m2!1sen!2sus!4v1747600478528!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+				</div>
+			</section>
+		</main>
+		
+		<footer>
+			<p>© <span id="current-year"></span> Dependable Painting LLC • <a href="tel:2515254405">(251) 525-4405</a> • Bay Minette, AL</p>
+		</footer>
+		
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				
+				// --- Initialize Swiper ---
+				new Swiper('.swiper-container', {
+					loop: true,
+					spaceBetween: 20,
+					autoplay: {
+						delay: 4000,
+						disableOnInteraction: false,
+					},
+					pagination: {
+						el: '.swiper-pagination',
+						clickable: true,
+					},
+					navigation: {
+						nextEl: '.swiper-button-next',
+						prevEl: '.swiper-button-prev',
+					},
+				});
+				
+				// --- Cache DOM Elements ---
+				const mobileMenu = document.getElementById('mobileMenu');
+				const hamburger = document.querySelector('.hamburger');
+				const hoursPopup = document.getElementById('hoursPopup');
+				const hoursToggleLink = document.querySelector('.hours-toggle a');
+				const submenu = document.getElementById('submenu');
+				const body = document.body;
+				const yearSpan = document.getElementById('current-year');
+				
+				// --- Menu & Popup Logic ---
+				window.toggleMenu = () => {
+					if (!mobileMenu || !hamburger) return;
+					const isOpen = mobileMenu.classList.toggle('open');
+					hamburger.classList.toggle('active', isOpen);
+					hamburger.setAttribute('aria-expanded', String(isOpen));
+					mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+					body.style.overflow = isOpen ? 'hidden' : '';
+					
+					if (isOpen) {
+						const links = mobileMenu.querySelectorAll('a');
+						links.forEach((link, i) => {
+							link.style.animation = 'none';
+							void link.offsetWidth; // Trigger reflow
+							link.style.animation = `menuItemFadeIn 0.5s ease forwards ${i * 0.07 + 0.1}s`;
+						});
+					}
+				};
+				
+				window.toggleSubMenu = (e) => {
+					e.preventDefault();
+					submenu?.classList.toggle('open');
+				};
+				
+				window.toggleHoursPopup = (e) => {
+					e.preventDefault();
+					e.stopPropagation();
+					if (!hoursPopup || !hoursToggleLink) return;
+					const isVisible = hoursPopup.classList.toggle('visible');
+					hoursToggleLink.setAttribute('aria-expanded', String(isVisible));
+				};
+				
+				// --- Global Event Listeners ---
+				document.addEventListener('click', (e) => {
+					if (hoursPopup?.classList.contains('visible') && !e.target.closest('.hours-toggle')) {
+						hoursPopup.classList.remove('visible');
+						hoursToggleLink?.setAttribute('aria-expanded', 'false');
+					}
+				});
+				
+				// --- Footer Logic ---
+				if (yearSpan) {
+					yearSpan.textContent = new Date().getFullYear();
+				}
+			});
+		</script>
+	</body>
+</html>
