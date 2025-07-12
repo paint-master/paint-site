@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "dependable-painting",
+  "name": "paint-site",
   "main": "./src/worker/index.ts",
   "compatibility_date": "2025-07-11",
   "observability": {
