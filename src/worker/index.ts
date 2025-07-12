@@ -1,6 +1,5 @@
 import { Hono } from "hono";
 import type { Env } from "../worker-configuration";
-import { Resend } from "resend";
 
 const app = new Hono<{ Bindings: Env }>();
 
@@ -15,27 +14,37 @@ app.post("/api/estimate", async (c) => {
     return c.json({ error: "Missing reCAPTCHA token" }, 400);
   }
 
-  const resend = new Resend(c.env.RESEND_API_KEY);
+  // Validate required fields
+  const required = { name, email, phone, service };
+  const missing = Object.entries(required)
+    .filter(([_, value]) => !value)
+    .map(([key]) => key);
+
+  if (missing.length > 0) {
+    return c.json({ error: `Missing field(s): ${missing.join(", ")}` }, 400);
+  }
 
   try {
-    await resend.emails.send({
-      from: "Dependable Painting <no-reply@dependablepainting.work>",
-      to: ["alexdimmler@dependablepainting.work"],
-      subject: `New Estimate Request from ${name || "unknown"}`,
-      html: `
-        <h2>New Estimate Request</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
-        <p><strong>Service:</strong> ${service}</p>
-        <p><strong>Message:</strong><br/>${message}</p>
-      `,
+    // Forward data to Google Apps Script webhook
+    const webhook = c.env.LEAD_WEBHOOK_URL;
+    if (!webhook) {
+      return c.json({ error: "Webhook URL not configured" }, 500);
+    }
+
+    const forward = await fetch(webhook, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, phone, service, message }),
     });
+
+    if (!forward.ok) {
+      throw new Error("Webhook returned error");
+    }
 
     return c.json({ message: "Estimate request submitted successfully" });
   } catch (error) {
-    console.error("Email send failed:", error);
-    return c.json({ error: "Failed to send email" }, 500);
+    console.error("Submit failed:", error);
+    return c.json({ error: "Failed to submit estimate" }, 500);
   }
 });
 
