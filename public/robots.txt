@@ -1,0 +1,22 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://dependablepainting.work/sitemap.xml
+
+# Disallow admin areas (if any exist in the future)
+Disallow: /admin/
+Disallow: /api/
+Disallow: /tmp/
+
+# Allow important pages
+Allow: /contact-form.html
+Allow: /services.html
+Allow: /interior-painting.html
+Allow: /exterior-painting.html
+Allow: /cabinet-painting.html
+Allow: /commercial-painting.html
+Allow: /about.html
+
+# Crawl delay (optional)
+Crawl-delay: 1
