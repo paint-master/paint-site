@@ -102,7 +102,32 @@ app.post("/api/estimate", async (c) => {
 
 // Fallback to static asset handling
 app.all("*", async (c) => {
-  return c.env.ASSETS.fetch(c.req.raw);
+  const response = await c.env.ASSETS.fetch(c.req.raw);
+  
+  // Add performance headers for static assets
+  if (response.ok) {
+    const url = new URL(c.req.url);
+    const newResponse = new Response(response.body, response);
+    
+    // Cache static assets
+    if (url.pathname.endsWith('.css') || url.pathname.endsWith('.js') || 
+        url.pathname.endsWith('.png') || url.pathname.endsWith('.jpg') || 
+        url.pathname.endsWith('.jpeg') || url.pathname.endsWith('.svg') ||
+        url.pathname.endsWith('.ico')) {
+      newResponse.headers.set('Cache-Control', 'public, max-age=31536000'); // 1 year
+    } else if (url.pathname.endsWith('.html')) {
+      newResponse.headers.set('Cache-Control', 'public, max-age=3600'); // 1 hour
+    }
+    
+    // Security headers
+    newResponse.headers.set('X-Content-Type-Options', 'nosniff');
+    newResponse.headers.set('X-Frame-Options', 'DENY');
+    newResponse.headers.set('X-XSS-Protection', '1; mode=block');
+    
+    return newResponse;
+  }
+  
+  return response;
 });
 
 // Helper function to generate paint-related answers
