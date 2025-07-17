@@ -3,6 +3,22 @@
 // Runtime types generated with workerd@1.20250617.0 2025-04-01 nodejs_compat
 declare namespace Cloudflare {
 	interface Env {
+		// Email configuration
+		OWNER_EMAIL?: string;
+		FROM_EMAIL?: string;
+		EMAIL_API_URL?: string;
+		EMAIL_API_KEY?: string;
+		
+		// reCAPTCHA configuration
+		RECAPTCHA_SECRET_KEY?: string;
+		
+		// Webhook configuration
+		LEAD_WEBHOOK_URL?: string;
+		
+		// Assets binding
+		ASSETS: {
+			fetch: typeof fetch;
+		};
 	}
 }
 interface Env extends Cloudflare.Env {}
