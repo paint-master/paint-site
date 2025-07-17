@@ -17,6 +17,5 @@ Allow: /exterior-painting.html
 Allow: /cabinet-painting.html
 Allow: /commercial-painting.html
 Allow: /about.html
-
-# Crawl delay (optional)
-Crawl-delay: 1
+Allow: /thank-you.html
+Allow: /privacy.html
