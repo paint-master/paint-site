@@ -19,3 +19,8 @@ Allow: /commercial-painting.html
 Allow: /about.html
 Allow: /thank-you.html
 Allow: /privacy.html
+
+# Optional: Allow Google tag routes
+Allow: /cdn-cgi/zaraz/*
+Allow: /gtag/js
+Allow: /collect
