@@ -1,6 +1,8 @@
 {
   "dependencies": {
+    "aos": "^2.3.4",
     "google-ads-api": "^20.0.1",
-    "hono": "^4.8.4"
+    "hono": "^4.8.4",
+    "swiper": "^11.2.10"
   }
 }
